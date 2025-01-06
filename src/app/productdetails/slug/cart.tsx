@@ -29,7 +29,7 @@ export default function ProductDetails({ post }: ProductProps) {
         {/* Add to Cart Button */}
         <button
           className="snipcart-add-item"
-          data-item-id={post._id}  // Use the product's unique _id
+          data-item-id={`${post._id}`}  // Use the product's unique _id
           data-item-name={post.title}
           data-item-price={post.price}
           data-item-url={`https://practice-hdec.vercel.app/productdetails/${post.slug}`}  // Full URL with slug
