@@ -28,7 +28,7 @@ export default function Products({ post }: { post: Types }) {
         {/* Add to Cart Button with Dynamic Data */}
         <button
           className="snipcart-add-item"
-          data-item-id={`${post._id}`}  // Use the product's unique _id, not slug
+          data-item-id={`${post.slug}`}  // Use the product's unique _id, not slug
           data-item-name={post.title}
           data-item-price={post.price}
           data-item-url={`https://practice-hdec.vercel.app/productdetails/${post.slug}`}  // Full URL with slug
