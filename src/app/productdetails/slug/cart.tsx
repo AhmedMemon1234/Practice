@@ -5,6 +5,11 @@ import Image from "next/image";
 
 // Define the ProductDetails component
 const ProductDetails = ({ post }: { post: any }) => {
+  // Check if post.slug exists and post.slug.current is valid
+  if (!post || !post.slug || !post.slug.current) {
+    return <div>Product not found</div>; // Handling case where slug or post is missing
+  }
+
   return (
     <section className="product-details">
       <div className="image-section">
@@ -24,7 +29,7 @@ const ProductDetails = ({ post }: { post: any }) => {
         {/* Add to Cart Button */}
         <button
           className="snipcart-add-item"
-          data-item-id={`${post.slug}`}  // Using slug.current as the unique ID
+          data-item-id={post.slug.current}  // Ensure we're using slug.current
           data-item-name={post.title}
           data-item-price={post.price}
           data-item-url={`https://practice-hdec.vercel.app/productdetails/${post.slug.current}`}  // Full URL with slug
@@ -43,17 +48,22 @@ export const getServerSideProps = async ({ params }: any) => {
   const slug = params?.slug;
 
   const query = `
-   *[_type == "post"]{
-      "slug":slug.current,
+    *[_type == "post" && slug.current == "${slug}"]{
       title,
       slug,
       price,
       image,
       summary
-    }
+    }[0]
   `;
 
   const post = await client.fetch(query);
+
+  if (!post) {
+    return {
+      notFound: true, // Return a 404 if the product is not found
+    };
+  }
 
   return {
     props: {
