@@ -28,7 +28,7 @@ export default function Products({ post }: { post: Types }) {
         {/* Add to Cart Button with Dynamic Data */}
        <button
   className="snipcart-add-item"
-  data-item-id={post.slug}
+  data-item-id={`${post.slug}`}
   data-item-name={post.title}
   data-item-price={post.price}
   data-item-url={`/productdetails/${post.slug}`}  // This should be correct

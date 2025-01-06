@@ -29,7 +29,7 @@ export default function ProductDetails({ post }: ProductProps) {
         {/* Add to Cart Button */}
         <button
   className="snipcart-add-item block px-4 py-1 text-center bg-accentDarkSecondary rounded text-dark font-semibold mt-4"
-  data-item-id={post.slug} // Unique ID
+  data-item-id={`${post.slug}`}
   data-item-name={post.title} // Product name
   data-item-price={post.price} // Dynamic price (make sure this matches)
   data-item-url={`${post.slug}`} // Dynamic cart URL
