@@ -33,7 +33,7 @@ export default function ProductDetails({ post }: ProductProps) {
           data-item-id={post.slug} // Dynamic ID
           data-item-name={post.title} // Product name
           data-item-price={1500} // Dynamic price
-          data-item-url={`/productdetails/${post.slug}/cart`} // Cart URL
+          data-item-url={`https://practice-hdec.vercel.app/productdetails/${post.slug}`} // Corrected URL
           data-item-description={post.summary} // Product description
           data-item-image={urlFor(post.image)} // Image URL
         >
@@ -48,8 +48,8 @@ export default function ProductDetails({ post }: ProductProps) {
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const slug = params?.slug;
 
-  const query = groq`
-    *[_type == "product" && slug.current == $slug][0] {
+  const query = `
+    *[_type == "product" && slug.current == "${slug}"][0] {
       title,
       slug,
       description,
