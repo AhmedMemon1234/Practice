@@ -1,15 +1,10 @@
-import { GetServerSideProps } from "next";
-import { urlFor } from "@/sanity/lib/image"; // Sanity image helper
-import { Types } from "../../Type"; // Assuming this is the Type for product
 import { groq } from "next-sanity";
 import { client } from "@/sanity/lib/client"; // Sanity client
+import { urlFor } from "@/sanity/lib/image"; // Sanity image helper
 import Image from "next/image";
 
-interface ProductProps {
-  post: Types;
-}
-
-export default function ProductDetails({ post }: ProductProps) {
+// Define the ProductDetails component
+const ProductDetails = ({ post }: { post: any }) => {
   return (
     <section className="product-details">
       <div className="image-section">
@@ -29,35 +24,36 @@ export default function ProductDetails({ post }: ProductProps) {
         {/* Add to Cart Button */}
         <button
           className="snipcart-add-item"
-          data-item-id={post.title}  // Using slug.current as the unique ID
+          data-item-id={post.slug.current}  // Using slug as the unique ID
           data-item-name={post.title}
           data-item-price={post.price}
-          data-item-url={`https://practice-hdec.vercel.app/productdetails/${post.slug}`}  // Full URL with slug
+          data-item-url={`https://practice-hdec.vercel.app/productdetails/${post.slug.current}`}  // Full URL with slug
           data-item-description={post.summary}
           data-item-image={urlFor(post.image)}  // Correct image URL
         >
           Add to Cart
         </button>
-
       </div>
     </section>
   );
-}
+};
 
 // Fetch data for the product based on the slug
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+export const getServerSideProps = async ({ params }: any) => {
   const slug = params?.slug;
 
   const query = `
-    *[_type == "details" && slug.current == "${slug}"][0] {
+   *[_type == "post"]{
+      "slug":slug.current,
       title,
       slug,
       price,
       image,
+      summary
     }
   `;
 
-  const post = await client.fetch(query, { slug });
+  const post = await client.fetch(query);
 
   return {
     props: {
@@ -65,3 +61,5 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     },
   };
 };
+
+export default ProductDetails;
