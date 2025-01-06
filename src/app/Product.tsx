@@ -31,7 +31,7 @@ export default function Products({ post }: { post: Types }) {
   data-item-id={post.slug} // Unique ID
   data-item-name={post.title} // Product name
   data-item-price={1500} // Dynamic price
-  data-item-url={`${post.slug}`} // Dynamic cart URL
+  data-item-url={`https://https://practice-hdec.vercel.app/productdetails/${post.slug}/cart`} // Replace with your live URL
   data-item-description={post.summary} // Description
   data-item-image={urlFor(post.image)} // Image URL
 >
