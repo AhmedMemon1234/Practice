@@ -6,7 +6,7 @@ import { Types } from "./Type";
 
 export default async function Home() {
   const query = `*[_type=="post"] | order(_createdAt asc){
-  title,image,
+  title,image,price,
   "slug":slug.current
   }`;
   const response = await client.fetch(query)

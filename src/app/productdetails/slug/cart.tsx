@@ -24,21 +24,21 @@ export default function ProductDetails({ post }: ProductProps) {
 
       <div className="text-section">
         <h2>{post.title}</h2>
-        <p>{post.summary}</p>
-        <p>Price: {1500}</p>
+        <p>Price: {post.price}</p>
 
         {/* Add to Cart Button */}
         <button
-          className="snipcart-add-item"
-          data-item-id={post.slug} // Dynamic ID
-          data-item-name={post.title} // Product name
-          data-item-price={1500} // Dynamic price
-          data-item-url={`https://practice-hdec.vercel.app/productdetails/${post.slug}`} // Corrected URL
-          data-item-description={post.summary} // Product description
-          data-item-image={urlFor(post.image)} // Image URL
-        >
-          Add to Cart
-        </button>
+  className="snipcart-add-item block px-4 py-1 text-center bg-accentDarkSecondary rounded text-dark font-semibold mt-4"
+  data-item-id={post.slug} // Unique ID
+  data-item-name={post.title} // Product name
+  data-item-price={post.price} // Dynamic price (make sure this matches)
+  data-item-url={`${post.slug}`} // Dynamic cart URL
+  data-item-description={post.summary} // Description
+  data-item-image={urlFor(post.image)} // Image URL
+>
+  Add to Cart
+</button>
+
       </div>
     </section>
   );

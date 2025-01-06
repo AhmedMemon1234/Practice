@@ -22,7 +22,7 @@ export default function Products({ post }: { post: Types }) {
           {post.title}
         </h2>
         <p className="text-dark/70 dark:text-light/70 line-clamp-3">
-          {post.summary}
+          {post.price}
         </p>
 
         {/* Add to Cart Button with Dynamic Data */}
@@ -30,7 +30,7 @@ export default function Products({ post }: { post: Types }) {
   className="snipcart-add-item block px-4 py-1 text-center bg-accentDarkSecondary rounded text-dark font-semibold mt-4"
   data-item-id={post.slug} // Unique ID
   data-item-name={post.title} // Product name
-  data-item-price={1500} // Dynamic price
+  data-item-price={post.price} // Dynamic price
   data-item-url={`https://practice-hdec.vercel.app/productdetails/${post.slug}`} // Corrected URL
   data-item-description={post.summary} // Description
   data-item-image={urlFor(post.image)} // Image URL
