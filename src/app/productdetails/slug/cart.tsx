@@ -32,7 +32,7 @@ export default function ProductDetails({ post }: ProductProps) {
   data-item-id={`${post.slug}`}
   data-item-name={post.title}
   data-item-price={post.price}
-  data-item-url={`https://practice-hdec.vercel.app/productdetails/${post.slug}`}  // Full URL
+  data-item-url={`https://practice-hdec.vercel.app/${post.slug}`}  // Correct full URL
   data-item-description={post.summary}
   data-item-image={urlFor(post.image)}  // Correct image URL
 >
