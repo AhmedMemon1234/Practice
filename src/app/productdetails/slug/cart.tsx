@@ -28,16 +28,16 @@ export default function ProductDetails({ post }: ProductProps) {
 
         {/* Add to Cart Button */}
         <button
-  className="snipcart-add-item block px-4 py-1 text-center bg-accentDarkSecondary rounded text-dark font-semibold mt-4"
-  data-item-id={`${post.slug}`}
-  data-item-name={post.title}
-  data-item-price={post.price}
-  data-item-url={`https://practice-hdec.vercel.app/${post.slug}`}  // Correct full URL
-  data-item-description={post.summary}
-  data-item-image={urlFor(post.image)}  // Correct image URL
->
-  Add to Cart
-</button>
+          className="snipcart-add-item"
+          data-item-id={`${post._id}`}  // Use the product's unique _id, not slug
+          data-item-name={post.title}
+          data-item-price={post.price}
+          data-item-url={`https://practice-hdec.vercel.app/productdetails/${post.slug}`}  // Full URL with slug
+          data-item-description={post.summary}
+          data-item-image={urlFor(post.image)}  // Correct image URL
+        >
+          Add to Cart
+        </button>
 
       </div>
     </section>

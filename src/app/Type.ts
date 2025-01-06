@@ -4,4 +4,5 @@ export type Types={
     image:any,
     slug:string,
     price:number,
+    _id:any,
     }
