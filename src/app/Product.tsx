@@ -26,14 +26,14 @@ export default function Products({ post }: { post: Types }) {
         </p>
 
         {/* Add to Cart Button with Dynamic Data */}
-        <button
-  className="snipcart-add-item block px-4 py-1 text-center bg-accentDarkSecondary rounded text-dark font-semibold mt-4"
-  data-item-id={post.slug} // Unique ID
-  data-item-name={post.title} // Product name
-  data-item-price={post.price} // Dynamic price
-  data-item-url={`https://practice-hdec.vercel.app/productdetails/${post.slug}`} // Corrected URL
-  data-item-description={post.summary} // Description
-  data-item-image={urlFor(post.image)} // Image URL
+       <button
+  className="snipcart-add-item"
+  data-item-id={post.slug}
+  data-item-name={post.title}
+  data-item-price={post.price}
+  data-item-url={`/productdetails/${post.slug}`}  // This should be correct
+  data-item-description={post.summary}
+  data-item-image={post.image}
 >
   Add to Cart
 </button>
