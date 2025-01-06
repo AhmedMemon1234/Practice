@@ -24,7 +24,7 @@ const ProductDetails = ({ post }: { post: any }) => {
         {/* Add to Cart Button */}
         <button
           className="snipcart-add-item"
-          data-item-id={post.slug.current}  // Using slug as the unique ID
+          data-item-id={`${post.slug}`}  // Using slug.current as the unique ID
           data-item-name={post.title}
           data-item-price={post.price}
           data-item-url={`https://practice-hdec.vercel.app/productdetails/${post.slug.current}`}  // Full URL with slug
